@@ -121,6 +121,16 @@ class Block implements
         return $this->lastIp;
     }
 
+    public function isV4(): bool
+    {
+        return $this->givenIp->isV4();
+    }
+
+    public function isV6(): bool
+    {
+        return $this->givenIp->isV6();
+    }
+
 
     /**
      * Get netmask

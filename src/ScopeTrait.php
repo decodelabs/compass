@@ -41,4 +41,14 @@ trait ScopeTrait
             )
         );
     }
+
+    public function isV4(): bool
+    {
+        return $this->getFirstIp()->isV4();
+    }
+
+    public function isV6(): bool
+    {
+        return $this->getFirstIp()->isV6();
+    }
 }
