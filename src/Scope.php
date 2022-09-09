@@ -29,4 +29,7 @@ interface Scope
 
     public function getFirstIp(): Ip;
     public function getLastIp(): Ip;
+
+    public function isV4(): bool;
+    public function isV6(): bool;
 }
