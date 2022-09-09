@@ -19,7 +19,45 @@ composer require decodelabs/compass
 
 ## Usage
 
-Coming soon...
+Parse IP strings, integers and binaries and inspect them:
+
+```php
+use DecodeLabs\Compass\Ip;
+
+$ip = Ip::parse('127.0.0.1');
+
+if($ip->isV4()) {
+    // Do something
+}
+
+if($ip->isLoopback()) {
+    // Do something else
+}
+
+$v6Hybrid = $ip->toV6(); // ::ffff:127.0.0.1
+
+$v6 = Ip::parse('fe80:0:0:0:202:b3ff:fe1e:8329');
+
+if($ip->isV6()) {
+    // The future
+}
+```
+
+Check to see if an IP is within a range:
+
+```php
+if($ip->isIn('127.0.0.0/8')) {} // CIDR
+if($ip->isIn('127.0.0.0/255.0.0.0')) {} // Netmask
+if($ip->isIn('127.0.0.4-127.0.0.10')) {} // Range
+if($ip->isIn('127.0.0.4+6')) {} // Relative range
+if($ip->isIn('127.0.0.*')) {} // Wildcards
+
+if($v6->isIn('fe80:0:0:0:202:b3ff:fe1e:0/128')) {} // CIDR
+if($v6->isIn('fe80:0:0:0:202:b3ff:fe1e:0-fe80:0:0:0:202:b3ff:fe1e:ffff')) {} // Range
+if($v6->isIn('fe80:0:0:0:202:b3ff:fe1e:0+9999')) {} // Relative range
+if($v6->isIn('fe80:0:0:0:202:b3ff:fe1e:*')) {} // Wildcards
+```
+
 
 ## Licensing
 Compass is licensed under the MIT License. See [LICENSE](./LICENSE) for the full license text.
