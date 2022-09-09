@@ -12,17 +12,17 @@ namespace DecodeLabs\Compass;
 use Brick\Math\BigInteger;
 use DecodeLabs\Exceptional;
 use DecodeLabs\Glitch\Dumpable;
-use Stringable;
 
 class Range implements
     Scope,
-    Stringable,
     Dumpable
 {
     use ScopeTrait;
 
     protected Ip $start;
     protected Ip $end;
+
+    protected ?Scope $originalScope = null;
 
     /**
      * Parse input value to Range
@@ -60,23 +60,21 @@ class Range implements
         }
 
 
+        // CIDR
+        if (
+            is_string($range) &&
+            false !== strpos($range, '/')
+        ) {
+            $range = Block::parse($range);
+        }
+
+
         // Scope
         if ($range instanceof Scope) {
             $this->setRange(
                 $range->getFirstIp(),
-                $range->getLastIp()
-            );
-            return;
-        }
-
-
-        // CIDR
-        if (false !== strpos($range, '/')) {
-            $block = Block::parse($range);
-
-            $this->setRange(
-                $block->getFirstIp(),
-                $block->getLastIp()
+                $range->getLastIp(),
+                $range
             );
             return;
         }
@@ -112,10 +110,12 @@ class Range implements
 
     protected function setRange(
         Ip $start,
-        Ip $end
+        Ip $end,
+        ?Scope $originalScope = null
     ): void {
         $this->start = $start;
         $this->end = $end;
+        $this->originalScope = $originalScope;
 
         if ($this->start->isGreaterThan($this->end)) {
             throw Exceptional::UnexpectedValue(
@@ -264,6 +264,10 @@ class Range implements
      */
     public function __toString(): string
     {
+        if ($this->originalScope !== null) {
+            return $this->originalScope->__toString();
+        }
+
         return $this->start . '-' . $this->end;
     }
 

@@ -12,11 +12,9 @@ namespace DecodeLabs\Compass;
 use Brick\Math\BigInteger;
 use DecodeLabs\Exceptional;
 use DecodeLabs\Glitch\Dumpable;
-use Stringable;
 
 class Block implements
     Scope,
-    Stringable,
     Dumpable
 {
     use ScopeTrait;

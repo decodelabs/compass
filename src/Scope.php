@@ -10,8 +10,9 @@ declare(strict_types=1);
 namespace DecodeLabs\Compass;
 
 use Brick\Math\BigInteger;
+use Stringable;
 
-interface Scope
+interface Scope extends Stringable
 {
     /**
      * Does the range contain the IP or Scope
