@@ -11,7 +11,11 @@
     "require": {
         "php": "^8.0",
 
-        "decodelabs/exceptional": "^0.4"
+        "decodelabs/dictum": "^0.4",
+        "decodelabs/exceptional": "^0.4",
+        "decodelabs/glitch-support": "^0.4",
+
+        "brick/math": "^0.10.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^9",
@@ -41,9 +45,9 @@
         "analyze": "phpstan analyze --no-progress",
         "ecs": "ecs check --no-progress-bar",
         "ecs-fix": "ecs check --no-progress-bar --fix",
-        "lint": "parallel-lint src/ stubs/ ecs.php",
-        "eclint": "eclint check src/ stubs/ ecs.php",
-        "eclint-fix": "eclint fix src/ stubs/ ecs.php",
+        "lint": "parallel-lint src/ ecs.php",
+        "eclint": "eclint check src/ ecs.php",
+        "eclint-fix": "eclint fix src/ ecs.php",
         "non-ascii": "! LC_ALL=C.UTF-8 find src/ -type f -name \"*.php\" -print0 | xargs -0 -- grep -PHn \"[^ -~]\" | grep -v '// @ignore-non-ascii$'",
         "check": [
             "@composer update",
