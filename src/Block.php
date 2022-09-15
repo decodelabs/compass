@@ -11,12 +11,23 @@ namespace DecodeLabs\Compass;
 
 use Brick\Math\BigInteger;
 use DecodeLabs\Exceptional;
+use DecodeLabs\Fluidity\SingleParameterFactory;
+use DecodeLabs\Fluidity\SingleParameterFactoryTrait;
 use DecodeLabs\Glitch\Dumpable;
 
+/**
+ * @implements SingleParameterFactory<Ip|Block|string>
+ */
 class Block implements
+    SingleParameterFactory,
     Scope,
     Dumpable
 {
+    /**
+     * @use SingleParameterFactoryTrait<Ip|Block|string>
+     */
+    use SingleParameterFactoryTrait;
+
     use ScopeTrait;
 
     protected Ip $givenIp;
@@ -35,29 +46,44 @@ class Block implements
      */
     public static function parse(
         Ip|Block|string $block
-    ): Block {
-        if ($block instanceof Block) {
+    ): static {
+        if ($block instanceof static) {
             return $block;
         }
 
-        return new self($block);
+        return new static($block);
     }
 
     /**
      * Init with blcok def
+     *
+     * @param Ip|Block|string $block
      */
-    public function __construct(
-        Ip|string $block
-    ) {
+    public function __construct(mixed $block)
+    {
         $prefixLength = 0;
 
+        // Reparse block
+        if ($block instanceof Block) {
+            $block = (string)$block;
+        }
+
+        // Split string
         if (is_string($block)) {
             if (false !== strpos($block, '/')) {
                 list($block, $prefixLength) = explode('/', $block, 2);
             }
 
-
             $block = Ip::parse($block);
+        }
+
+        // Check block
+        if (!$block instanceof Ip) {
+            throw Exceptional::InvalidArgument(
+                'Block must contain an IP',
+                null,
+                $block
+            );
         }
 
         $this->givenIp = $block;

@@ -11,12 +11,23 @@ namespace DecodeLabs\Compass;
 
 use Brick\Math\BigInteger;
 use DecodeLabs\Exceptional;
+use DecodeLabs\Fluidity\SingleParameterFactory;
+use DecodeLabs\Fluidity\SingleParameterFactoryTrait;
 use DecodeLabs\Glitch\Dumpable;
 
+/**
+ * @implements SingleParameterFactory<Ip|Scope|string|int|BigInteger>
+ */
 class Range implements
+    SingleParameterFactory,
     Scope,
     Dumpable
 {
+    /**
+     * @use SingleParameterFactoryTrait<Ip|Scope|string|int|BigInteger>
+     */
+    use SingleParameterFactoryTrait;
+
     use ScopeTrait;
 
     protected Ip $start;
@@ -29,20 +40,21 @@ class Range implements
      */
     public static function parse(
         Ip|Scope|string|int|BigInteger $range
-    ): Range {
-        if ($range instanceof Range) {
+    ): static {
+        if ($range instanceof static) {
             return $range;
         }
 
-        return new self($range);
+        return new static($range);
     }
 
     /**
      * Init with input value
+     *
+     * @param Ip|Scope|string|int|BigInteger $range
      */
-    public function __construct(
-        Ip|Scope|string|int|BigInteger $range
-    ) {
+    public function __construct(mixed $range)
+    {
         // Single IP
         if (
             is_int($range) ||
