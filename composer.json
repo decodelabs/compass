@@ -11,8 +11,8 @@
     "require": {
         "php": "^8.0",
 
-        "decodelabs/dictum": "^0.4",
         "decodelabs/exceptional": "^0.4",
+        "decodelabs/fluidity": "^0.3.2",
         "decodelabs/glitch-support": "^0.4",
 
         "brick/math": "^0.10.2"

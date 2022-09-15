@@ -11,13 +11,24 @@ namespace DecodeLabs\Compass;
 
 use Brick\Math\BigInteger;
 use DecodeLabs\Exceptional;
+use DecodeLabs\Fluidity\SingleParameterFactory;
+use DecodeLabs\Fluidity\SingleParameterFactoryTrait;
 use DecodeLabs\Glitch\Dumpable;
 use Stringable;
 
+/**
+ * @implements SingleParameterFactory<Ip|string|int|BigInteger>
+ */
 class Ip implements
+    SingleParameterFactory,
     Stringable,
     Dumpable
 {
+    /**
+     * @use SingleParameterFactoryTrait<Ip|string|int|BigInteger>
+     */
+    use SingleParameterFactoryTrait;
+
     public const V4_MAX = '4294967295';
     public const V4_SIZE = 32 / 4;
     public const V4_BITS = 32;
@@ -54,9 +65,11 @@ class Ip implements
 
     /**
      * Init with IP string or int
+     *
+     * @param Ip|string|int|BigInteger $ip
      */
-    final public function __construct(
-        Ip|string|int|BigInteger $ip,
+    public function __construct(
+        mixed $ip,
         ?bool $isV6 = null
     ) {
         // Ip
@@ -72,6 +85,16 @@ class Ip implements
         // String
         elseif (is_string($ip)) {
             $ip = $this->parseString($ip);
+        }
+
+
+        // Check BigInteger
+        if (!$ip instanceof BigInteger) {
+            throw Exceptional::InvalidArgument(
+                'IP does not resolve to a BigInteger',
+                null,
+                $ip
+            );
         }
 
 
