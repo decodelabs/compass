@@ -1,3 +1,5 @@
+* Updated composer check script
+
 ## v0.1.2 (2022-09-15)
 * Use Fluidity SingleParameterFactory
 * Improved object instancing
