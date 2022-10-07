@@ -7,7 +7,13 @@
 [![PHPStan](https://img.shields.io/badge/PHPStan-enabled-44CC11.svg?longCache=true&style=flat)](https://github.com/phpstan/phpstan)
 [![License](https://img.shields.io/packagist/l/decodelabs/compass?style=flat)](https://packagist.org/packages/decodelabs/compass)
 
-Parse, inspect and test IP addresses
+### Parse, inspect and test IP addresses
+
+Compass provides an accurate disassembly of both v4 and v6 IP addresses and the means to inspect and compare them.
+
+_Get news and updates on the [DecodeLabs blog](https://blog.decodelabs.com)._
+
+---
 
 ## Installation
 
