@@ -64,6 +64,29 @@ class Ip implements
     }
 
     /**
+     * Validate IP or return null
+     */
+    public static function isValid(
+        Ip|string|int|BigInteger $ip,
+    ): bool {
+        if ($ip instanceof Ip) {
+            return true;
+        }
+
+        if (is_string($ip)) {
+            return filter_var($ip, FILTER_VALIDATE_IP) !== false;
+        }
+
+        if (is_int($ip)) {
+            $ip = BigInteger::of($ip);
+        }
+
+        return
+            !$ip->isLessThan(0) &&
+            !$ip->isGreaterThan(self::V6_MAX);
+    }
+
+    /**
      * Init with IP string or int
      *
      * @param Ip|string|int|BigInteger $ip
