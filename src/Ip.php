@@ -67,8 +67,12 @@ class Ip implements
      * Validate IP or return null
      */
     public static function isValid(
-        Ip|string|int|BigInteger $ip,
+        Ip|string|int|BigInteger|null $ip,
     ): bool {
+        if ($ip === null) {
+            return false;
+        }
+
         if ($ip instanceof Ip) {
             return true;
         }
