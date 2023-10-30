@@ -1,3 +1,5 @@
+* Accept null in Ip::isValid()
+
 ## v0.1.4 (2023-10-30)
 * Added isValid()
 
