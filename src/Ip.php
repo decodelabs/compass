@@ -143,8 +143,9 @@ class Ip implements
     /**
      * Convert string representation to BigInteger
      */
-    protected function parseString(string $ip): BigInteger
-    {
+    protected function parseString(
+        string $ip
+    ): BigInteger {
         // Number
         if (ctype_digit($ip)) {
             return BigInteger::of($ip);
@@ -233,8 +234,9 @@ class Ip implements
     /**
      * Check address is within valid bounds
      */
-    protected function testBounds(BigInteger $ip): void
-    {
+    protected function testBounds(
+        BigInteger $ip
+    ): void {
         if ($ip->isLessThan(0)) {
             throw Exceptional::InvalidArgument(
                 'IP integer value cannot be less than zero: ' . $ip
@@ -259,8 +261,9 @@ class Ip implements
     /**
      * Set version
      */
-    public function setVersion(int $version): static
-    {
+    public function setVersion(
+        int $version
+    ): static {
         if ($version === 4) {
             return $this->toV4();
         } elseif ($version === 6) {

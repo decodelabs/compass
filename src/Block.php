@@ -59,8 +59,9 @@ class Block implements
      *
      * @param Ip|Block|string $block
      */
-    public function __construct(mixed $block)
-    {
+    public function __construct(
+        mixed $block
+    ) {
         $prefixLength = 0;
 
         // Reparse block

@@ -53,8 +53,9 @@ class Range implements
      *
      * @param Ip|Scope|string|int|BigInteger $range
      */
-    public function __construct(mixed $range)
-    {
+    public function __construct(
+        mixed $range
+    ) {
         // Single IP
         if (
             is_int($range) ||
@@ -142,8 +143,9 @@ class Range implements
     /**
      * Parse hyphenated range
      */
-    protected function parseRange(string $range): void
-    {
+    protected function parseRange(
+        string $range
+    ): void {
         $parts = explode('-', $range, 2);
 
         $this->setRange(
@@ -156,8 +158,9 @@ class Range implements
     /**
      * Parse + range
      */
-    protected function parsePlus(string $range): void
-    {
+    protected function parsePlus(
+        string $range
+    ): void {
         $parts = explode('+', $range, 2);
 
         $this->setRange(
