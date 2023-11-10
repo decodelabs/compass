@@ -1,3 +1,5 @@
+* Made PHP8.1 minimum version
+
 ## v0.1.5 (2023-10-30)
 * Accept null in Ip::isValid()
 
