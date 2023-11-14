@@ -1,3 +1,4 @@
+## v0.1.6 (2023-11-14)
 * Made PHP8.1 minimum version
 * Updated Brick\Math dependency
 
