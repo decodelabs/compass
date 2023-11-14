@@ -1,4 +1,5 @@
 * Made PHP8.1 minimum version
+* Updated Brick\Math dependency
 
 ## v0.1.5 (2023-10-30)
 * Accept null in Ip::isValid()

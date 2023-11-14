@@ -15,7 +15,7 @@
         "decodelabs/fluidity": "^0.3.2",
         "decodelabs/glitch-support": "^0.4",
 
-        "brick/math": "^0.10.2"
+        "brick/math": "^0.10.2|^0.11"
     },
     "require-dev": {
         "decodelabs/phpstan-decodelabs": "^0.6"
