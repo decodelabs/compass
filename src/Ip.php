@@ -591,8 +591,7 @@ class Ip implements
         foreach (
             $this->v6 ?
                 V6Blocks::PRIVATE :
-                V4Blocks::PRIVATE
-            as $block
+                V4Blocks::PRIVATE as $block
         ) {
             if ($this->isIn($block)) {
                 $this->private = true;
@@ -618,8 +617,7 @@ class Ip implements
         foreach (
             $this->v6 ?
                 V6Blocks::RESERVED :
-                V4Blocks::RESERVED
-            as $block
+                V4Blocks::RESERVED as $block
         ) {
             if ($this->isIn($block)) {
                 $this->reserved = true;
