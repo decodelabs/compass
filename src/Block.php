@@ -109,9 +109,9 @@ class Block implements
         if ($this->givenIp->isV4()) {
             if (
                 is_string($prefix) &&
-                isset(V4Blocks::NETMASK_PREFIXES[$prefix])
+                isset(V4Blocks::NetmaskPrefixes[$prefix])
             ) {
-                $prefix = V4Blocks::NETMASK_PREFIXES[$prefix];
+                $prefix = V4Blocks::NetmaskPrefixes[$prefix];
             }
 
             if (!is_numeric($prefix)) {

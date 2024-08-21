@@ -590,8 +590,8 @@ class Ip implements
 
         foreach (
             $this->v6 ?
-                V6Blocks::PRIVATE :
-                V4Blocks::PRIVATE as $block
+                V6Blocks::Private :
+                V4Blocks::Private as $block
         ) {
             if ($this->isIn($block)) {
                 $this->private = true;
@@ -616,8 +616,8 @@ class Ip implements
 
         foreach (
             $this->v6 ?
-                V6Blocks::RESERVED :
-                V4Blocks::RESERVED as $block
+                V6Blocks::Reserved :
+                V4Blocks::Reserved as $block
         ) {
             if ($this->isIn($block)) {
                 $this->reserved = true;
@@ -646,8 +646,8 @@ class Ip implements
         if ($this->linkLocal === null) {
             $this->linkLocal = $this->isIn(
                 $this->v6 ?
-                    V6Blocks::LINK_LOCAL :
-                    V4Blocks::LINK_LOCAL
+                    V6Blocks::LinkLocal :
+                    V4Blocks::LinkLocal
             );
         }
 
@@ -663,8 +663,8 @@ class Ip implements
         if ($this->loopback === null) {
             $this->loopback = $this->isIn(
                 $this->v6 ?
-                    V6Blocks::LOOPBACK :
-                    V4Blocks::LOOPBACK
+                    V6Blocks::Loopback :
+                    V4Blocks::Loopback
             );
         }
 

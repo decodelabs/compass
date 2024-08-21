@@ -12,7 +12,7 @@ namespace DecodeLabs\Compass;
 interface V6Blocks
 {
     // Private
-    public const PRIVATE = [
+    public const Private = [
         'fc00::/7',
         '2001:2::/48',
         '100::/64',
@@ -22,7 +22,7 @@ interface V6Blocks
 
 
     // Reserved
-    public const RESERVED = [
+    public const Reserved = [
         '::/128',
         '::1/128',
         '::ffff:0:0/96',
@@ -47,9 +47,9 @@ interface V6Blocks
 
 
     // Loopback
-    public const LOOPBACK = '::1/128';
+    public const Loopback = '::1/128';
 
 
     // Link Local
-    public const LINK_LOCAL = 'fe80::/10';
+    public const LinkLocal = 'fe80::/10';
 }

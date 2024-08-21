@@ -12,7 +12,7 @@ namespace DecodeLabs\Compass;
 interface V4Blocks
 {
     // Private
-    public const PRIVATE = [
+    public const Private = [
         '10.0.0.0/8',
         '100.64.0.0/10',
         '172.16.0.0/12',
@@ -23,7 +23,7 @@ interface V4Blocks
 
 
     // Reserved
-    public const RESERVED = [
+    public const Reserved = [
         '0.0.0.0/8',
         '0.0.0.0/32',
         '10.0.0.0/8',
@@ -53,15 +53,15 @@ interface V4Blocks
 
 
     // Loopback
-    public const LOOPBACK = '127.0.0.0/8';
+    public const Loopback = '127.0.0.0/8';
 
 
     // Link Local
-    public const LINK_LOCAL = '169.254.0.0/16';
+    public const LinkLocal = '169.254.0.0/16';
 
 
     // Netmask
-    public const NETMASK_PREFIXES = [
+    public const NetmaskPrefixes = [
         '0.0.0.0' => 0,
         '128.0.0.0' => 1,
         '192.0.0.0' => 2,
