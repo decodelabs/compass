@@ -11,6 +11,9 @@ namespace DecodeLabs\Compass;
 
 use Brick\Math\BigInteger;
 
+/**
+ * @phpstan-require-implements Scope
+ */
 trait ScopeTrait
 {
     public function contains(
