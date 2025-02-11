@@ -30,8 +30,8 @@ class Range implements
 
     use ScopeTrait;
 
-    protected Ip $start;
-    protected Ip $end;
+    public protected(set) Ip $firstIp;
+    public protected(set) Ip $lastIp;
 
     protected ?Scope $originalScope = null;
 
@@ -85,8 +85,8 @@ class Range implements
         // Scope
         if ($range instanceof Scope) {
             $this->setRange(
-                $range->getFirstIp(),
-                $range->getLastIp(),
+                $range->firstIp,
+                $range->lastIp,
                 $range
             );
             return;
@@ -126,15 +126,14 @@ class Range implements
         Ip $end,
         ?Scope $originalScope = null
     ): void {
-        $this->start = $start;
-        $this->end = $end;
+        $this->firstIp = $start;
+        $this->lastIp = $end;
         $this->originalScope = $originalScope;
 
-        if ($this->start->isGreaterThan($this->end)) {
+        if ($this->firstIp->isGreaterThan($this->lastIp)) {
             throw Exceptional::UnexpectedValue(
-                'Start IP is higher than range end IP',
-                null,
-                $this
+                message: 'Start IP is higher than range end IP',
+                data: $this
             );
         }
     }
@@ -162,11 +161,10 @@ class Range implements
         string $range
     ): void {
         $parts = explode('+', $range, 2);
+        $start = Ip::parse($parts[0]);
+        $end = $start->plus($parts[1]);
 
-        $this->setRange(
-            $start = Ip::parse($parts[0]),
-            $start->plus($parts[1])
-        );
+        $this->setRange($start, $end);
     }
 
 
@@ -201,8 +199,8 @@ class Range implements
             $end4[] = $this->parseWildcardPart($range, $part, false, true);
         }
 
-        $this->start = Ip::parse($this->reconstructIp($start6, $start4));
-        $this->end = Ip::parse($this->reconstructIp($end6, $end4));
+        $this->firstIp = Ip::parse($this->reconstructIp($start6, $start4));
+        $this->lastIp = Ip::parse($this->reconstructIp($end6, $end4));
     }
 
     protected function parseWildcardPart(
@@ -261,17 +259,6 @@ class Range implements
     }
 
 
-    public function getFirstIp(): Ip
-    {
-        return $this->start;
-    }
-
-    public function getLastIp(): Ip
-    {
-        return $this->end;
-    }
-
-
 
 
     /**
@@ -283,7 +270,7 @@ class Range implements
             return $this->originalScope->__toString();
         }
 
-        return $this->start . '-' . $this->end;
+        return $this->firstIp . '-' . $this->lastIp;
     }
 
 

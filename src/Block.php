@@ -31,8 +31,9 @@ class Block implements
     use ScopeTrait;
 
     protected Ip $givenIp;
-    protected Ip $firstIp;
-    protected Ip $lastIp;
+
+    public protected(set) Ip $firstIp;
+    public protected(set) Ip $lastIp;
 
     protected int $prefixLength;
     protected ?Ip $netmask = null;
@@ -76,15 +77,6 @@ class Block implements
             }
 
             $block = Ip::parse($block);
-        }
-
-        // Check block
-        if (!$block instanceof Ip) {
-            throw Exceptional::InvalidArgument(
-                'Block must contain an IP',
-                null,
-                $block
-            );
         }
 
         $this->givenIp = $block;
@@ -135,16 +127,6 @@ class Block implements
         return $prefix;
     }
 
-
-    public function getFirstIp(): Ip
-    {
-        return $this->firstIp;
-    }
-
-    public function getLastIp(): Ip
-    {
-        return $this->lastIp;
-    }
 
     public function isV4(): bool
     {

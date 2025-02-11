@@ -29,13 +29,13 @@ class Ip implements
      */
     use SingleParameterFactoryTrait;
 
-    public const V4_MAX = '4294967295';
-    public const V4_SIZE = 32 / 4;
-    public const V4_BITS = 32;
+    protected const V4Max = '4294967295';
+    protected const V4Size = 32 / 4;
+    protected const V4Bits = 32;
 
-    public const V6_MAX = '340282366920938463463374607431768211455';
-    public const V6_SIZE = 32;
-    public const V6_BITS = 128;
+    protected const V6Max = '340282366920938463463374607431768211455';
+    protected const V6Size = 32;
+    protected const V6Bits = 128;
 
     protected BigInteger $ip;
 
@@ -48,6 +48,25 @@ class Ip implements
     protected ?bool $loopback = null;
 
     protected ?string $string = null;
+
+
+    public int $version {
+        get => $this->getVersion();
+    }
+
+    public BigInteger $max {
+        get => $this->getMax();
+    }
+
+    public int $size {
+        get => $this->getSize();
+    }
+
+    public int $bits {
+        get => $this->getBits();
+    }
+
+
 
     /**
      * Parse IP or return null
@@ -87,7 +106,7 @@ class Ip implements
 
         return
             !$ip->isLessThan(0) &&
-            !$ip->isGreaterThan(self::V6_MAX);
+            !$ip->isGreaterThan(self::V6Max);
     }
 
     /**
@@ -115,20 +134,10 @@ class Ip implements
         }
 
 
-        // Check BigInteger
-        if (!$ip instanceof BigInteger) {
-            throw Exceptional::InvalidArgument(
-                'IP does not resolve to a BigInteger',
-                null,
-                $ip
-            );
-        }
-
-
         // V6
         if (
             $isV6 ||
-            $ip->isGreaterThan(self::V4_MAX)
+            $ip->isGreaterThan(self::V4Max)
         ) {
             $this->v6 = true;
         }
@@ -166,6 +175,7 @@ class Ip implements
                 throw Exceptional::Runtime('Unable to unpack hex: ' . $ip);
             }
 
+            /** @var array{ hex: string } $hex */
             return BigInteger::fromBase($hex['hex'], 16);
         }
 
@@ -227,6 +237,7 @@ class Ip implements
             );
         }
 
+        /** @var array{ hex: string } $hex */
         return BigInteger::fromBase($hex['hex'], 16);
     }
 
@@ -241,7 +252,7 @@ class Ip implements
             throw Exceptional::InvalidArgument(
                 'IP integer value cannot be less than zero: ' . $ip
             );
-        } elseif ($ip->isGreaterThan(self::V6_MAX)) {
+        } elseif ($ip->isGreaterThan(self::V6Max)) {
             throw Exceptional::InvalidArgument(
                 'IP integer value is outside the V6 range: ' . $ip
             );
@@ -261,7 +272,7 @@ class Ip implements
     /**
      * Set version
      */
-    public function setVersion(
+    public function toVersion(
         int $version
     ): static {
         if ($version === 4) {
@@ -280,7 +291,7 @@ class Ip implements
     public function getMax(): BigInteger
     {
         return BigInteger::of(
-            $this->v6 ? self::V6_MAX : self::V4_MAX
+            $this->v6 ? self::V6Max : self::V4Max
         );
     }
 
@@ -290,7 +301,7 @@ class Ip implements
      */
     public function getSize(): int
     {
-        return $this->v6 ? self::V6_SIZE : self::V4_SIZE;
+        return $this->v6 ? self::V6Size : self::V4Size;
     }
 
 
@@ -299,7 +310,7 @@ class Ip implements
      */
     public function getBits(): int
     {
-        return $this->v6 ? self::V6_BITS : self::V4_BITS;
+        return $this->v6 ? self::V6Bits : self::V4Bits;
     }
 
 
