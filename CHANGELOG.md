@@ -1,5 +1,10 @@
+## v0.3.0 (2025-02-11)
+* Made IP consts protected
+* Added IP property hooks
 * Added @phpstan-require-implements constraints
+* Upgraded PHPStan to v2
 * Added PHP8.4 to CI workflow
+* Made PHP8.4 minimum version
 
 ## v0.2.0 (2024-08-21)
 * Converted consts to PascalCase

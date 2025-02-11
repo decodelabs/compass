@@ -22,11 +22,11 @@ trait ScopeTrait
         $range = Range::parse($scope);
 
         return
-            $this->getFirstIp()->isLessThanOrEqualTo(
-                $range->getFirstIp()
+            $this->firstIp->isLessThanOrEqualTo(
+                $range->firstIp
             ) &&
-            $this->getLastIp()->isGreaterThanOrEqualTo(
-                $range->getLastIp()
+            $this->lastIp->isGreaterThanOrEqualTo(
+                $range->lastIp
             );
     }
 
@@ -36,22 +36,22 @@ trait ScopeTrait
         $range = Range::parse($scope);
 
         return !(
-            $this->getLastIp()->isLessThan(
-                $range->getFirstIp()
+            $this->lastIp->isLessThan(
+                $range->firstIp
             ) ||
-            $this->getFirstIp()->isGreaterThan(
-                $range->getLastIp()
+            $this->firstIp->isGreaterThan(
+                $range->lastIp
             )
         );
     }
 
     public function isV4(): bool
     {
-        return $this->getFirstIp()->isV4();
+        return $this->firstIp->isV4();
     }
 
     public function isV6(): bool
     {
-        return $this->getFirstIp()->isV6();
+        return $this->firstIp->isV6();
     }
 }

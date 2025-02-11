@@ -14,6 +14,9 @@ use Stringable;
 
 interface Scope extends Stringable
 {
+    public Ip $firstIp { get; }
+    public Ip $lastIp { get; }
+
     /**
      * Does the range contain the IP or Scope
      */
@@ -27,9 +30,6 @@ interface Scope extends Stringable
     public function overlaps(
         Ip|Scope|string|int|BigInteger $scope
     ): bool;
-
-    public function getFirstIp(): Ip;
-    public function getLastIp(): Ip;
 
     public function isV4(): bool;
     public function isV6(): bool;
