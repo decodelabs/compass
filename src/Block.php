@@ -108,7 +108,7 @@ class Block implements
 
             if (!is_numeric($prefix)) {
                 throw Exceptional::InvalidArgument(
-                    'Prefix length is invalid: ' . $prefix
+                    message: 'Prefix length is invalid: ' . $prefix
                 );
             }
         }
@@ -120,7 +120,7 @@ class Block implements
             $prefix > $this->givenIp->getBits()
         ) {
             throw Exceptional::OutOfBounds(
-                'Prefix length is out of bounds: ' . $prefix
+                message: 'Prefix length is out of bounds: ' . $prefix
             );
         }
 

@@ -172,7 +172,9 @@ class Ip implements
             !$hasV6
         ) {
             if (false === ($hex = unpack('H*hex', $ip))) {
-                throw Exceptional::Runtime('Unable to unpack hex: ' . $ip);
+                throw Exceptional::Runtime(
+                    message: 'Unable to unpack hex: ' . $ip
+                );
             }
 
             /** @var array{ hex: string } $hex */
@@ -226,14 +228,14 @@ class Ip implements
         // Convert to bin
         if (false === ($bin = inet_pton($ip))) {
             throw Exceptional::InvalidArgument(
-                'Could not parse IPV6 address: ' . $in
+                message: 'Could not parse IPV6 address: ' . $in
             );
         }
 
         // To hex
         if (false === ($hex = unpack("H*hex", $bin))) {
             throw Exceptional::Runtime(
-                'Unable to unpack hex: ' . $bin
+                message: 'Unable to unpack hex: ' . $bin
             );
         }
 
@@ -250,11 +252,11 @@ class Ip implements
     ): void {
         if ($ip->isLessThan(0)) {
             throw Exceptional::InvalidArgument(
-                'IP integer value cannot be less than zero: ' . $ip
+                message: 'IP integer value cannot be less than zero: ' . $ip
             );
         } elseif ($ip->isGreaterThan(self::V6Max)) {
             throw Exceptional::InvalidArgument(
-                'IP integer value is outside the V6 range: ' . $ip
+                message: 'IP integer value is outside the V6 range: ' . $ip
             );
         }
     }
@@ -281,7 +283,9 @@ class Ip implements
             return $this->toV6();
         }
 
-        throw Exceptional::InvalidArgument('Unrecognised version: ' . $version);
+        throw Exceptional::InvalidArgument(
+            message: 'Unrecognised version: ' . $version
+        );
     }
 
 
@@ -345,7 +349,7 @@ class Ip implements
 
         if (!$this->isV4Range()) {
             throw Exceptional::OutOfBounds(
-                'Unable to convert IPV6 to IPV4, address is out of V4 range'
+                message: 'Unable to convert IPV6 to IPV4, address is out of V4 range'
             );
         }
 

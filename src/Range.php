@@ -218,7 +218,7 @@ class Range implements
             $part !== '*'
         ) {
             throw Exceptional::InvalidArgument(
-                'Invalid wildcard range: ' . $range
+                message: 'Invalid wildcard range: ' . $range
             );
         }
 
