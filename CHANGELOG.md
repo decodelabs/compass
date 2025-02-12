@@ -1,3 +1,5 @@
+* Improved Exception syntax
+
 ## v0.3.0 (2025-02-11)
 * Made IP consts protected
 * Added IP property hooks
