@@ -11,8 +11,6 @@
 
 Compass provides an accurate disassembly of both v4 and v6 IP addresses and the means to inspect and compare them.
 
-_Get news and updates on the [DecodeLabs blog](https://blog.decodelabs.com)._
-
 ---
 
 ## Installation
