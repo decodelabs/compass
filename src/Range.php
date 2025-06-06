@@ -13,7 +13,8 @@ use Brick\Math\BigInteger;
 use DecodeLabs\Exceptional;
 use DecodeLabs\Fluidity\SingleParameterFactory;
 use DecodeLabs\Fluidity\SingleParameterFactoryTrait;
-use DecodeLabs\Glitch\Dumpable;
+use DecodeLabs\Nuance\Dumpable;
+use DecodeLabs\Nuance\Entity\NativeObject as NuanceEntity;
 
 /**
  * @implements SingleParameterFactory<Ip|Scope|string|int|BigInteger>
@@ -261,9 +262,6 @@ class Range implements
 
 
 
-    /**
-     * Convert to string
-     */
     public function __toString(): string
     {
         if ($this->originalScope !== null) {
@@ -274,11 +272,10 @@ class Range implements
     }
 
 
-    /**
-     * Export for dump inspection
-     */
-    public function glitchDump(): iterable
+    public function toNuanceEntity(): NuanceEntity
     {
-        yield 'text' => $this->__toString();
+        $entity = new NuanceEntity($this);
+        $entity->text = $this->__toString();
+        return $entity;
     }
 }

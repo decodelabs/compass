@@ -13,7 +13,8 @@ use Brick\Math\BigInteger;
 use DecodeLabs\Exceptional;
 use DecodeLabs\Fluidity\SingleParameterFactory;
 use DecodeLabs\Fluidity\SingleParameterFactoryTrait;
-use DecodeLabs\Glitch\Dumpable;
+use DecodeLabs\Nuance\Dumpable;
+use DecodeLabs\Nuance\Entity\NativeObject as NuanceEntity;
 
 /**
  * @implements SingleParameterFactory<Ip|Block|string>
@@ -196,18 +197,16 @@ class Block implements
     }
 
 
-    /**
-     * Export for dump inspection
-     */
-    public function glitchDump(): iterable
+    public function toNuanceEntity(): NuanceEntity
     {
-        yield 'text' => $this->__toString();
+        $entity = new NuanceEntity($this);
+        $entity->text = $this->__toString();
 
-        yield 'properties' => [
-            'firstIp' => $this->firstIp,
-            'lastIp' => $this->lastIp,
-            'netmask' => $this->netmask,
-            'delta' => $this->delta
-        ];
+        $entity->setProperty('firstIp', $this->firstIp);
+        $entity->setProperty('lastIp', $this->lastIp);
+        $entity->setProperty('netmask', $this->getNetmask());
+        $entity->setProperty('delta', $this->getDelta());
+
+        return $entity;
     }
 }
