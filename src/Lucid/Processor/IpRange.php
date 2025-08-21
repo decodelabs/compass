@@ -29,9 +29,6 @@ class IpRange implements Processor
 
     public const array OutputTypes = ['Compass:Range', Range::class];
 
-    /**
-     * Convert prepared value to string or null
-     */
     public function coerce(
         mixed $value
     ): ?Range {

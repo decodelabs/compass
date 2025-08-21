@@ -27,9 +27,6 @@ class Ip implements Processor
 
     public const array OutputTypes = ['Compass:Ip', Ip::class];
 
-    /**
-     * Convert prepared value to string or null
-     */
     public function coerce(
         mixed $value
     ): ?IpAddress {
