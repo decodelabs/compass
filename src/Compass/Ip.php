@@ -69,9 +69,6 @@ class Ip implements
 
 
 
-    /**
-     * Parse IP or return null
-     */
     public static function parse(
         Ip|string|int|BigInteger $ip,
         ?bool $isV6 = null
@@ -83,9 +80,6 @@ class Ip implements
         return new static($ip, $isV6);
     }
 
-    /**
-     * Validate IP or return null
-     */
     public static function isValid(
         Ip|string|int|BigInteger|null $ip,
     ): bool {
@@ -111,8 +105,6 @@ class Ip implements
     }
 
     /**
-     * Init with IP string or int
-     *
      * @param Ip|string|int|BigInteger $ip
      */
     public function __construct(
@@ -150,9 +142,7 @@ class Ip implements
     }
 
 
-    /**
-     * Convert string representation to BigInteger
-     */
+
     protected function parseString(
         string $ip
     ): BigInteger {
@@ -245,9 +235,7 @@ class Ip implements
     }
 
 
-    /**
-     * Check address is within valid bounds
-     */
+
     protected function testBounds(
         BigInteger $ip
     ): void {
@@ -264,17 +252,13 @@ class Ip implements
 
 
 
-    /**
-     * Get stack version
-     */
+
     public function getVersion(): int
     {
         return $this->v6 ? 6 : 4;
     }
 
-    /**
-     * Set version
-     */
+
     public function toVersion(
         int $version
     ): static {
@@ -290,9 +274,7 @@ class Ip implements
     }
 
 
-    /**
-     * Get max integer size
-     */
+
     public function getMax(): BigInteger
     {
         return BigInteger::of(
@@ -301,18 +283,14 @@ class Ip implements
     }
 
 
-    /**
-     * Get padding size
-     */
+
     public function getSize(): int
     {
         return $this->v6 ? self::V6Size : self::V4Size;
     }
 
 
-    /**
-     * Get bits
-     */
+
     public function getBits(): int
     {
         return $this->v6 ? self::V6Bits : self::V4Bits;
@@ -320,17 +298,13 @@ class Ip implements
 
 
 
-    /**
-     * Is in V4 stack
-     */
+
     public function isV4(): bool
     {
         return !$this->v6;
     }
 
-    /**
-     * Is in V4 range (either stack)
-     */
+
     public function isV4Range(): bool
     {
         return
@@ -339,9 +313,7 @@ class Ip implements
     }
 
 
-    /**
-     * Ensure address is in V4 stack if possible
-     */
+
     public function toV4(): static
     {
         if (!$this->v6) {
@@ -359,18 +331,14 @@ class Ip implements
     }
 
 
-    /**
-     * Is in V6 stack
-     */
+
     public function isV6(): bool
     {
         return $this->v6;
     }
 
 
-    /**
-     * Ensure address is in V6 stack
-     */
+
     public function toV6(): static
     {
         if ($this->v6) {
@@ -382,18 +350,14 @@ class Ip implements
 
 
 
-    /**
-     * Get numeric representation
-     */
+
     public function toNumber(): BigInteger
     {
         return $this->ip;
     }
 
 
-    /**
-     * Get binary representation
-     */
+
     public function toBinary(): string
     {
         return pack('H*', str_pad(
@@ -406,9 +370,7 @@ class Ip implements
 
 
 
-    /**
-     * Bitwise and
-     */
+
     public function and(
         Ip|string|int|BigInteger $that
     ): static {
@@ -420,9 +382,7 @@ class Ip implements
         );
     }
 
-    /**
-     * Bitwise or
-     */
+
     public function or(
         Ip|string|int|BigInteger $that
     ): static {
@@ -434,9 +394,7 @@ class Ip implements
         );
     }
 
-    /**
-     * Bitwise xor
-     */
+
     public function xor(
         Ip|string|int|BigInteger $that
     ): static {
@@ -448,9 +406,7 @@ class Ip implements
         );
     }
 
-    /**
-     * Bitwise negate
-     */
+
     public function negate(): static
     {
         return static::parse(
@@ -462,9 +418,7 @@ class Ip implements
     }
 
 
-    /**
-     * Bitwise match comparison
-     */
+
     public function matches(
         Ip|string|int|BigInteger $that,
         Ip|string|int|BigInteger $mask = 0
@@ -477,9 +431,7 @@ class Ip implements
     }
 
 
-    /**
-     * Compare two IPs
-     */
+
     public function compare(
         Ip|string|int|BigInteger $that
     ): int {
@@ -519,9 +471,7 @@ class Ip implements
 
 
 
-    /**
-     * Add value to current
-     */
+
     public function plus(
         Ip|string|int|BigInteger $value
     ): static {
@@ -549,9 +499,7 @@ class Ip implements
     }
 
 
-    /**
-     * Subtract value from current
-     */
+
     public function minus(
         Ip|string|int|BigInteger $value
     ): static {
@@ -581,9 +529,7 @@ class Ip implements
 
 
 
-    /**
-     * Is in block range
-     */
+
     public function isIn(
         Ip|Range|string|int|BigInteger $range
     ): bool {
@@ -593,9 +539,7 @@ class Ip implements
 
 
 
-    /**
-     * Is in private block
-     */
+
     public function isPrivate(): bool
     {
         if ($this->private !== null) {
@@ -619,9 +563,7 @@ class Ip implements
     }
 
 
-    /**
-     * Is in reserved block
-     */
+
     public function isReserved(): bool
     {
         if ($this->reserved !== null) {
@@ -645,18 +587,14 @@ class Ip implements
     }
 
 
-    /**
-     * Is in public range
-     */
+
     public function isPublic(): bool
     {
         return !$this->isReserved();
     }
 
 
-    /**
-     * Is a link-local address
-     */
+
     public function isLinkLocal(): bool
     {
         if ($this->linkLocal === null) {
@@ -671,9 +609,7 @@ class Ip implements
     }
 
 
-    /**
-     * Is a loopback address
-     */
+
     public function isLoopback(): bool
     {
         if ($this->loopback === null) {
@@ -689,9 +625,7 @@ class Ip implements
 
 
 
-    /**
-     * Convert to string
-     */
+
     public function __toString(): string
     {
         if ($this->string !== null) {

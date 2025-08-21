@@ -36,9 +36,6 @@ class Range implements
 
     protected ?Scope $originalScope = null;
 
-    /**
-     * Parse input value to Range
-     */
     public static function parse(
         Ip|Scope|string|int|BigInteger $range
     ): static {
@@ -50,8 +47,6 @@ class Range implements
     }
 
     /**
-     * Init with input value
-     *
      * @param Ip|Scope|string|int|BigInteger $range
      */
     public function __construct(
@@ -140,9 +135,6 @@ class Range implements
     }
 
 
-    /**
-     * Parse hyphenated range
-     */
     protected function parseRange(
         string $range
     ): void {
@@ -155,9 +147,6 @@ class Range implements
     }
 
 
-    /**
-     * Parse + range
-     */
     protected function parsePlus(
         string $range
     ): void {
@@ -170,9 +159,6 @@ class Range implements
 
 
 
-    /**
-     * Parse V4 range
-     */
     protected function parseWildcards(
         string $range
     ): void {

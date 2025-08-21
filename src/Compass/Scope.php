@@ -17,16 +17,10 @@ interface Scope extends Stringable
     public Ip $firstIp { get; }
     public Ip $lastIp { get; }
 
-    /**
-     * Does the range contain the IP or Scope
-     */
     public function contains(
         Ip|Scope|string|int|BigInteger $scope
     ): bool;
 
-    /**
-     * Does the range contain any part of Scope
-     */
     public function overlaps(
         Ip|Scope|string|int|BigInteger $scope
     ): bool;

@@ -43,9 +43,6 @@ class Block implements
     protected ?BigInteger $maxAddresses = null;
 
 
-    /**
-     * Parse Block or null
-     */
     public static function parse(
         Ip|Block|string $block
     ): static {
@@ -57,8 +54,6 @@ class Block implements
     }
 
     /**
-     * Init with blcok def
-     *
      * @param Ip|Block|string $block
      */
     public function __construct(
@@ -88,9 +83,6 @@ class Block implements
     }
 
 
-    /**
-     * Ensure prefix length is valid
-     */
     protected function normalizePrefixLength(
         int|string $prefix
     ): int {
@@ -140,9 +132,6 @@ class Block implements
     }
 
 
-    /**
-     * Get netmask
-     */
     public function getNetmask(): Ip
     {
         if ($this->netmask === null) {
@@ -164,9 +153,6 @@ class Block implements
     }
 
 
-    /**
-     * Get delta
-     */
     public function getDelta(): Ip
     {
         if ($this->delta === null) {
@@ -188,9 +174,6 @@ class Block implements
 
 
 
-    /**
-     * Convert to string
-     */
     public function __toString(): string
     {
         return $this->firstIp . '/' . $this->prefixLength;
