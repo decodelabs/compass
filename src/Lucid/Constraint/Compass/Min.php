@@ -62,6 +62,10 @@ class Min implements Constraint
             return false;
         }
 
+        if ($this->parameter === null) {
+            return true;
+        }
+
         $value = $value instanceof IpRange ?
             $value->firstIp :
             $value;

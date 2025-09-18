@@ -18,7 +18,7 @@
         "brick/math": "^0.12|^0.13"
     },
     "require-dev": {
-        "decodelabs/lucid": "^0.6",
+        "decodelabs/lucid": "^0.7",
         "decodelabs/phpstan-decodelabs": "^0.7"
     },
     "conflict": {

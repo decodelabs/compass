@@ -62,6 +62,10 @@ class Max implements Constraint
             return false;
         }
 
+        if ($this->parameter === null) {
+            return true;
+        }
+
         $value = $value instanceof IpRange ?
             $value->lastIp :
             $value;
