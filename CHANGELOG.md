@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+### [v0.4.3](https://github.com/decodelabs/compass/commits/v0.4.3) - 19th September 2025
+
+
+[Full list of changes](https://github.com/decodelabs/compass/compare/v0.4.2...v0.4.3)
+
+---
+
 ### [v0.4.2](https://github.com/decodelabs/compass/commits/v0.4.2) - 19th September 2025
 
 - Upgraded Lucid to v0.8
