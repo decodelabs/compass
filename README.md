@@ -15,6 +15,8 @@ Compass provides an accurate disassembly of both v4 and v6 IP addresses and the 
 
 ## Installation
 
+This package requires PHP 8.4 or higher.
+
 Install via Composer:
 
 ```bash
