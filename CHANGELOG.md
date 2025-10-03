@@ -5,12 +5,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Unreleased
+--
+
+---
+
+### [v0.4.4](https://github.com/decodelabs/compass/commits/v0.4.4) - 3rd October 2025
+
 - Upgraded Nuance to v0.2
+
+[Full list of changes](https://github.com/decodelabs/compass/compare/v0.4.3...v0.4.4)
 
 ---
 
 ### [v0.4.3](https://github.com/decodelabs/compass/commits/v0.4.3) - 19th September 2025
-
 
 [Full list of changes](https://github.com/decodelabs/compass/compare/v0.4.2...v0.4.3)
 
