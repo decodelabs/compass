@@ -1,8 +1,8 @@
 <?php
 
 /**
- * @package Compass
- * @license http://opensource.org/licenses/MIT
+ * Compass
+ * @license https://opensource.org/licenses/MIT
  */
 
 declare(strict_types=1);
